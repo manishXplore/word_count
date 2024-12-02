@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Analyzer</title>
+</head>
+<body>
+    <h1>Text Analyzer</h1>
+    <form method="post">
+        <!--<label for="paragraph">Enter your paragraph:</label><br>-->
+        <textarea name="paragraph" id="paragraph" rows="6" cols="50" placeholder="Enter your text here...">{{ paragraph }}</textarea><br>
+        <input type="submit" value="Analyze">
+    </form>
+
+    {% if total_words %}
+    <h2>Result:</h2>
+    <p>Total number of words: {{ total_words }}</p>
+    <!--<label>Total No Of Words in Text<label>-->
+    <p>Word counts:</p>
+    <label>Format : [word, index, repetition_count]<label>
+    <ul>
+        {% for word, index, count in word_counts %}
+        <li>{{ word }}, {{ index }}, {{ count }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if word_details %}
+    <h2>Result:</h2>
+    <p><strong>Word Details:</strong></p>
+    <label>Format : [word, index, first_pos, frequency]<label>
+    <ul>
+        {% for word, idx_no, fir_pos, count in word_details %}
+        <li>{{ word }}, {{ idx_no }}, {{ fir_pos }}, {{ count }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
